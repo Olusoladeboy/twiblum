@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+
+
+
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <title>Twiblum</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Twiblum allows you post short twibs (posts)">
+    <link rel="icon" href="images/favicon.png">
+
+    <!-- CSS 
+    ================================================== -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/night-mode.css">
+    <link rel="stylesheet" href="css/framework.css">
+
+    <!-- icons
+    ================================================== -->
+    <link rel="stylesheet" href="css/icons.css">
+
+    <!-- Google font
+    ================================================== -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- sidebar -->
+        <div class="main_sidebar">
+            <div class="side-overlay" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></div>
+
+            <!-- sidebar header -->
+            <div class="sidebar-header">
+                <h4> Navigation</h4>
+                <span class="btn-close" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></span>
+            </div>
+
+            <!-- sidebar Menu -->
+            <div class="sidebar">
+                <div class="sidebar_innr" data-simplebar>
+
+                    <div class="sections">
+                        <ul>
+                            <li>
+                                <a href="/"> <img src="images/icons/home.png" alt="">
+                                    <span> Feed </span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+
+
+                     <!-- Optional Footer ->  -->
+                    <div id="foot">
+
+                        <ul>
+                            Developed By: <li> <a href="https://www.olusola.tk"> Emmanuel Olusola </a></li>
+                        </ul>
+
+
+                        <div class="foot-content">
+                            <p>© 2020 <strong>Twiblum</strong>. All Rights Reserved. </p>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <!-- header -->
+        <div id="main_header">
+            <header class="shadow-0">
+                <div class="header-innr">
+
+
+                    <!-- Logo-->
+                    <div class="header-btn-traiger" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible">
+                        <span></span></div>
+
+                    <!-- Logo-->
+                    <div id="logo">
+                        <a href="/"> <img src="images/logo.png" alt=""></a>
+                        <a href="/"> <img src="images/logo-light.png" class="logo-inverse"
+                                alt=""></a>
+                    </div>
+
+                    <!-- user icons -->
+                    <div style="margin-left: 133px;" class="head_user">
+
+
+                        <a href="/" class="opts_icon_link uk-visible@s"> Home </a>
+                        <% if(currentUser){ %> 
+                            <a href="/<%= currentUser.username %>" class="opts_icon_link uk-visible@s"> <%= currentUser.username %> </a>
+                        <% } %> 
+
+
+
+
+                        <% if(currentUser){ %>
+                            <!-- profile -image -->
+                            <a class="opts_account" href="#"> <img src="images/icons/photo.png" alt=""></a>
+
+                            <!-- profile dropdown-->
+                            <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
+                                class="dropdown-notifications rounded-lg">
+
+                                <!-- User Name / Avatar -->
+                                <a href="/<%= currentUser.username %> ">
+
+                                    <div class="dropdown-user-details">
+                                        <div class="dropdown-user-avatar">
+                                            <img src="images/icons/photo.png" alt="">
+                                        </div>
+                                        <div class="dropdown-user-name"> <%= currentUser.username %>  </div>
+                                    </div>
+
+                                </a>
+
+                                <!-- User menu -->
+
+    
+
+                                <ul class="dropdown-user-menu">
+                                    <li><a href="/<%= currentUser.username %> "> <i class="uil-user"></i> My Profile </a> </li>
+                                    <li>
+                                        <a href="#" id="night-mode" class="btn-night-mode">
+                                            <i class="uil-moon"></i> Night mode
+                                            <span class="btn-night-mode-switch">
+                                                <span class="uk-switch-button"></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    </li>
+                                    <li><a href="/logout"> <i class="uil-sign-out-alt"></i>Logout</a>
+                                    </li>
+                                </ul>
+                            </div>                            
+                        <% } else {  %>
+                            <a href="#" id="night-mode" class="btn-night-mode">
+                                <i class="uil-moon"></i>
+                                <span style="margin-top: -5px;" class="btn-night-mode-switch">
+                                    <span class="uk-switch-button"></span>
+                                </span>
+                            </a>
+                        <% }  %> 
+
+
+
+                    </div>
+
+                </div> <!-- / heaader-innr -->
+            </header>
+
+        </div>
+
+
+
+        <!-- contents -->
+        <div class="main_content">
+
+            <div class="main_content_inner pt-0">
+
+                <div class="single-group">
+                    <div class="group-cover">
+
+                        <!--Signle group cover -->
+                        <img src="images/group/group-cover-4.jpg" alt="">
+
+                    </div>
+
+                    <div class="single-group-details">
+                        <div class="left-side">
+                            <div class="single-group-image">
+                                <a href="#">
+                                    <img src="images/group/group-avature.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="single-group-details-info">
+                                <h3> TwiBlum </h3>
+                                <p>
+                                    <p> <i class="uil-thumbs-up"></i> 12k Joined!!! </p>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="right-side">
+                            <div class="btn-subscribe">
+                                <% if (currentUser) { %>
+                                    <a href="/logout" class="button primary"> <i class="uil-sign-out-alt"></i> Logout <a>                                   
+                                <% } else {  %> 
+                                    <a href="/signup" class="button primary"> <i class="uil-user-plus"></i> Join
+                                    </a>
+                                    <a href="/login" class="button secondary"> <i class="uil-user"></i> Login
+                                    </a>                                    
+                                <% } %>  
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="nav-single-group" k-sticky="offset:61;media : @s">
+                        <nav class="responsive-tab">   
+                            <ul>
+                            <% if(error && error.length > 0){ %>
+                                <li class="uk-active"><a class="active" href="#">
+                                        <div class="p-3 alert alert-warning alert-dismissible fade show" role="alert">
+                                            <strong> <%= error %> </strong>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <hr class="m-0">
+                                        </div> 
+                                </a></li>
+                            <% } %> 
+                            </ul>
+                        </nav>
+                        <form class="nav-single-group-saerchbox">
+                            <i class="uil-search"></i>
+                            <input class="uk-input" type="text" placeholder="Search Twibs..." disabled>
+                        </form>
+                    </div>
+
+
+                </div>
+
+
+                <div class="section-small">
+
+                    <div uk-grid>
+
+                        <div class="uk-width-2-3@m fead-area">                         
+                            <div class="post-newer">
+
+                                <div class="post-new" uk-toggle="target: body ; cls: post-focus">
+                                    <div class="post-new-media">
+                                        <div class="post-new-media-user">
+                                            <img src="images/icons/photo.png" alt="">
+                                        </div>
+                                        <div class="post-new-media-input">
+                                            <input value="" type="text" class="uk-input" placeholder="Twib Now....">
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="post-new-type">
+    
+                                        <!-- <a href="#">
+                                            <img src="images/icons/photo.png" alt="">
+                                            Photo/Video
+                                        </a>
+    
+                                        <a href="#" class="uk-visible@s">
+                                            <img src="images/icons/tag-friend.png" alt="">
+                                            Tag Friend
+                                        </a>
+    
+                                        <a href="#"><img src="images/icons/reactions_wow.png" alt="">
+                                            Fealing /Activity
+                                        </a> -->
+    
+                                    </div>
+                                </div>
+    
+                                <div class="post-pop">
+    
+                                    <div class="post-new-overyly" uk-toggle="target: body ; cls: post-focus"></div>
+    
+                                    <div class="post-new uk-animation-slide-top-small">
+                                        <form action="/twib" method="post" autocomplete="off">
+                                            <div class="post-new-header">
+        
+                                                <h4> Create new Twib</h4>
+        
+                                                <!-- close button-->
+                                                <span class="post-new-btn-close" uk-toggle="target: body ; cls: post-focus"
+                                                    uk-tooltip="title:Close; pos: left "></span>
+        
+                                            </div>
+        
+                                            <div class="post-new-media">
+                                                <div class="post-new-media-user">
+                                                    <img src="images/icons/photo.png" alt="">
+                                                </div>
+                                                <div class="post-new-media-input">
+                                                    <textarea style="height: unset;" name="twib" id="" cols="" class="uk-input" rows="3" maxlength="300" onkeyup="countChar(this)"></textarea>
+                                                    <!-- <input type="text" name="twib" class="uk-input"
+                                                        placeholder="Twib Now..." maxlength="300"> -->
+                                                </div>
+                                            </div>
+                                            <div class="post-new-tab-nav">
+                                                <a href="#" uk-tooltip="title:Close"> <i class="uil-image"></i> </a>
+                                                <a href="#"> <i class="uil-user-plus"></i> </a>
+                                                <a href="#"> <i class="uil-video"></i> </a>
+                                                <a href="#"> <i class="uil-record-audio"></i> </a>
+                                                <a href="#"> <i class="uil-file-alt"></i> </a>
+                                                <a href="#"> <i class="uil-emoji"></i> </a>
+                                                <a href="#"> <i class="uil-gift"></i> </a>
+                                                <a href="#"> <i class="uil-shopping-basket"></i> </a>
+                                                <a href="#"> <i class="uil-check"></i> </a>
+                                                <a href="#"> <i class="uil-graph-bar"></i> </a>
+                                            </div>
+                                            <div class="uk-flex uk-flex-between">
+        
+        
+                                                <button id="btn-chr" class="button outline-light circle" type="button" style="
+                                                border-color: #e6e6e6;  border-width: 1px;  "><span id="charNum"></span> Characters Left</button>
+                                                <div uk-dropdown>
+                                                    <ul class="uk-nav uk-dropdown-nav">
+                                                        <li class="uk-active"><a href="#">Only me</a></li>
+                                                        <li><a href="#">Every one</a></li>
+                                                        <li><a href="#"> People I Follow </a></li>
+                                                        <li><a href="#">I People Follow Me</a></li>
+                                                    </ul>
+                                                </div>
+        
+                                                <button href="#" class="button primary px-6"> Share </button>
+                                            </div>                                        
+                                        </form>
+    
+    
+
+                                    </div>
+    
+                                </div>
+    
+                            </div>
+                            <!-- <div class="post-new">
+                                <div class="post-new-media">
+                                    <div class="post-new-media-user">
+                                        <img src="images/avatars/avatar-2.jpg" alt="">
+                                    </div>
+                                    <div class="post-new-media-input">
+                                        <input type="text" class="uk-input" placeholder="What's Your Mind ? Dennis!">
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="post-new-type">
+
+                                    <a href="#">
+                                        <img src="images/icons/photo.png" alt="">
+                                        Photo/Video
+                                    </a>
+
+                                    <a href="#" class="uk-visible@s">
+                                        <img src="images/icons/tag-friend.png" alt="">
+                                        Tag Friend
+                                    </a>
+
+                                    <a href="#"><img src="images/icons/reactions_wow.png" alt="">
+                                        Fealing /Activity
+                                    </a>
+
+                                </div>
+
+
+                            </div> -->
+
+                            <% feeds.slice().reverse().forEach((twibs) => { %>
+                                <div class="post">
+                                    <div class="post-heading">
+                                        <div class="post-avature">
+                                            <img src="images/icons/photo.png" alt="">
+                                        </div>
+                                        <div class="post-title">
+                                            <h4> <%= twibs.author.username %> </h4>
+                                            <p> <%= twibs.createdAt.toISOString().slice(0, 19).replace('T', ' ') %> <span> GMT</span> <i class="uil-users-alt"></i> </p>
+                                        </div>
+                                        <!-- <div class="post-btn-action">
+                                            <span class="icon-more uil-ellipsis-h"></span>
+                                            <div class="mt-0 p-2" uk-dropdown="pos: top-right;mode:hover ">
+                                                <ul class="uk-nav uk-dropdown-nav">
+                                                    <li><a href="#"> <i class="uil-share-alt mr-1"></i> Share</a> </li>
+                                                    <li><a href="#"> <i class="uil-edit-alt mr-1"></i> Edit Post </a></li>
+                                                    <li><a href="#"> <i class="uil-comment-slash mr-1"></i> Disable comments
+                                                        </a></li>
+                                                    <li><a href="#"> <i class="uil-favorite mr-1"></i> Add favorites </a>
+                                                    </li>
+                                                    <li><a href="#" class="text-danger"> <i class="uil-trash-alt mr-1"></i>
+                                                            Delete </a></li>
+                                                </ul>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    <div class="post-description">
+
+                                        <p> <%= twibs.twib %> </p>
+                                        <!-- <div class="post-state-details">
+                                            <div>
+                                                <img src="images/icons/reactions_like.png" alt="">
+                                                <img src="images/icons/reactions_love.png" alt="">
+                                                <p> 13 </p>
+                                            </div>
+                                            <p> 24 Comments</p>
+                                        </div> -->
+
+                                    </div>
+
+
+                                </div>  
+                                <!-- post comments -->
+                                                           
+                            <% }) %> 
+
+
+                        </div>
+
+                        <!-- sidebar -->
+                        <div class="uk-width-expand">
+
+
+                            <h3 class="button w-100 mb-3 p-0"> Twibbers - Just Joined </h3>
+
+                            <% if (users.length <5) { %>
+
+                                <% users.forEach(user => { %>
+                                    <div class="list-group-items">
+                                        <i class="uil-user-plus"></i>
+                                        <h5> <span class="mr-1"> <%= user.username %> </span></p>
+                                        </h5>
+                                    </div>
+                                <% }) %> 
+
+                            <% } else { %>
+
+                                <%  for (let index = 4; index >= 0; --index) { %>
+                                    <div class="list-group-items">
+                                        <i class="uil-user-plus"></i>
+                                        <h5> <span class="mr-1"> <%= users[index].username %> </span></p>
+                                        </h5>
+                                    </div>
+                                <% } %>
+
+                            <% } %>                     
+
+
+                            <hr class="my-3">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- For Night mode -->
+        <script>
+            (function (window, document, undefined) {
+                'use strict';
+                if (!('localStorage' in window)) return;
+                var nightMode = localStorage.getItem('gmtNightMode');
+                if (nightMode) {
+                    document.documentElement.className += ' night-mode';
+                }
+            })(window, document);
+
+
+            (function (window, document, undefined) {
+
+                'use strict';
+
+                // Feature test
+                if (!('localStorage' in window)) return;
+
+                // Get our newly insert toggle
+                var nightMode = document.querySelector('#night-mode');
+                if (!nightMode) return;
+
+                // When clicked, toggle night mode on or off
+                nightMode.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    document.documentElement.classList.toggle('night-mode');
+                    if (document.documentElement.classList.contains('night-mode')) {
+                        localStorage.setItem('gmtNightMode', true);
+                        return;
+                    }
+                    localStorage.removeItem('gmtNightMode');
+                }, false);
+
+            })(window, document);
+        </script>
+
+
+        <!-- javaScripts
+                ================================================== -->
+        <script src="js/framework.js"></script>
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/simplebar.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+            function countChar(val) {
+              var len = val.value.length;
+              if (len >= 10000) {
+                val.value = val.value.substring(50, 10000);
+              } else {
+                $('#charNum').text(300 - len);
+                if((300 - len) == 0) {
+                    $('#btn-chr').css({
+                        'background-color': 'red',
+                        'color': 'white'
+                    })
+                } else {
+                    $('#btn-chr').css({
+                        'background-color': 'inherit',
+                        'color': 'inherit'
+                    })
+                }
+              }
+            };
+          </script>        
+
+</body>
+
+
+<!-- Mirrored from demo.foxthemes.net/socialite/group-feed.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Jun 2020 17:07:33 GMT -->
+</html>

@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <title>Twiblum | Signup</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Twiblum allows you post short twibs (posts)">
+    <link rel="icon" href="images/favicon.png">
+
+    <!-- CSS 
+    ================================================== -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/night-mode.css">
+    <link rel="stylesheet" href="css/framework.css">
+
+    <!-- icons
+    ================================================== -->
+    <link rel="stylesheet" href="css/icons.css">
+
+    <!-- Google font
+    ================================================== -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- sidebar -->
+        <div class="main_sidebar">
+            <div class="side-overlay" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></div>
+
+            <!-- sidebar header -->
+            <div class="sidebar-header">
+                <h4> Navigation</h4>
+                <span class="btn-close" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></span>
+            </div>
+
+            <!-- sidebar Menu -->
+            <div class="sidebar">
+                <div class="sidebar_innr" data-simplebar>
+
+                    <div class="sections">
+                        <ul>
+                            <li>
+                                <a href="/"> <img src="images/icons/home.png" alt="">
+                                    <span> Feed </span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                     <!-- Optional Footer ->  -->
+                    <div id="foot">
+
+                        <ul>
+                            Developed By: <li> <a href="https://www.olusola.tk"> Emmanuel Olusola </a></li>
+                        </ul>
+
+
+                        <div class="foot-content">
+                            <p>© 2020 <strong>Twiblum</strong>. All Rights Reserved. </p>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- header -->
+        <div id="main_header">
+            <header>
+                <div class="header-innr">
+
+
+                    <!-- Logo-->
+                    <div class="header-btn-traiger" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible">
+                        <span></span></div>
+
+                    <!-- Logo-->
+                    <div id="logo">
+                        <a href="/"> <img src="images/logo.png" alt=""></a>
+                        <a href="/"> <img src="images/logo-light.png" class="logo-inverse"
+                                alt=""></a>
+                    </div>
+
+
+
+                    <!-- user icons -->
+                    <div class="head_user">
+
+
+                        <a href="/" class="opts_icon_link uk-visible@s"> Home </a>
+                        <a href="/login" class="opts_icon_link uk-visible@s"> Login </a>
+
+                        <!-- browse apps  -->
+                        <a href="#" class="opts_icon uk-visible@s" uk-tooltip="title: ; pos: bottom ;offset:7">
+                            <img src="images/icons/apps.svg" alt="">
+                        </a>
+
+
+                    </div>
+
+                </div> <!-- / heaader-innr -->
+            </header>
+
+        </div>
+
+
+        <!-- contents -->
+        <div class="main_content">
+
+
+            <div class="main_content_inner p-sm-0 ml-sm-4">
+
+                <h1 class="mt-4"> Signup </h1>
+
+                <div class="uk-position-relative" uk-grid>
+                    <div class="uk-width-1-4@m uk-flex-last@m pl-sm-0">
+
+                        <nav class="responsive-tab style-3 setting-menu"
+                            uk-sticky="top:30 ; offset:100; media:@m ;bottom:true; animation: uk-animation-slide-top">
+                            <ul>
+                                <li class="uk-active"><a href="#"> <i class="uil-user"></i> Signup</a></li>
+                            </ul>
+                        </nav>
+
+                    </div>
+
+                    <div class="uk-width-2-3@m mt-sm-3 pl-sm-0 p-sm-4">
+
+                        <div class="uk-card-default rounded">
+                            <% if(error && error.length > 0){ %>
+                                <div class="p-3 alert alert-warning alert-dismissible fade show" role="alert">
+                                    <strong> <%= error %> </strong>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    <hr class="m-0">
+                                </div>  
+                            <% } %>                                
+                            <form method="POST" action="/signup" class="uk-child-width-1-2@s uk-grid-small p-4" uk-grid>
+                                <div>
+                                    <h5 class="uk-text-bold mb-2"> Name </h5>
+                                    <input type="text" class="uk-input" placeholder="username" required name="username">
+                                </div>
+                                <div>
+                                    <h5 class="uk-text-bold mb-2"> Password </h5>
+                                    <input type="password" class="uk-input" placeholder="password" required name="password">
+                                </div>
+                                <div>
+                                    <h5 class="uk-text-bold mb-2"> Your email address </h5>
+                                    <input type="email" class="uk-input" placeholder="email" required name="email">
+                                </div>                            
+                                <div class="uk-flex uk-flex-right p-4">
+                                    <button class="button primary">Signup</button>
+                                </div>
+                            </form>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- For Night mode -->
+        <script>
+            (function (window, document, undefined) {
+                'use strict';
+                if (!('localStorage' in window)) return;
+                var nightMode = localStorage.getItem('gmtNightMode');
+                if (nightMode) {
+                    document.documentElement.className += ' night-mode';
+                }
+            })(window, document);
+
+
+            (function (window, document, undefined) {
+
+                'use strict';
+
+                // Feature test
+                if (!('localStorage' in window)) return;
+
+                // Get our newly insert toggle
+                var nightMode = document.querySelector('#night-mode');
+                if (!nightMode) return;
+
+                // When clicked, toggle night mode on or off
+                nightMode.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    document.documentElement.classList.toggle('night-mode');
+                    if (document.documentElement.classList.contains('night-mode')) {
+                        localStorage.setItem('gmtNightMode', true);
+                        return;
+                    }
+                    localStorage.removeItem('gmtNightMode');
+                }, false);
+
+            })(window, document);
+        </script>
+
+
+        <!-- javaScripts
+                ================================================== -->
+        <script src="js/framework.js"></script>
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/simplebar.js"></script>
+        <script src="js/main.js"></script>
+
+</body>
+
+
+</html>

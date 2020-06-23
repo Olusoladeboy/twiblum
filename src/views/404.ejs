@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+
+
+
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <title>Twiblum | 404 </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Twiblum allows you post short twibs (posts)">
+    <link rel="icon" href="images/favicon.png">
+
+    <!-- CSS 
+    ================================================== -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/night-mode.css">
+    <link rel="stylesheet" href="css/framework.css">
+
+    <!-- icons
+    ================================================== -->
+    <link rel="stylesheet" href="css/icons.css">
+
+    <!-- Google font
+    ================================================== -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- sidebar -->
+        <div class="main_sidebar">
+            <div class="side-overlay" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></div>
+
+            <!-- sidebar header -->
+            <div class="sidebar-header">
+                <h4> Navigation</h4>
+                <span class="btn-close" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></span>
+            </div>
+
+            <!-- sidebar Menu -->
+            <div class="sidebar">
+                <div class="sidebar_innr" data-simplebar>
+
+                    <div class="sections">
+                        <ul>
+                            <li>
+                                <a href="/"> <img src="images/icons/home.png" alt="">
+                                    <span> Feed </span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+
+
+                     <!-- Optional Footer ->  -->
+                    <div id="foot">
+
+                        <ul>
+                            Developed By: <li> <a href="https://www.olusola.tk"> Emmanuel Olusola </a></li>
+                        </ul>
+
+
+                        <div class="foot-content">
+                            <p>© 2020 <strong>Twiblum</strong>. All Rights Reserved. </p>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <!-- header -->
+        <div id="main_header">
+            <header class="shadow-0">
+                <div class="header-innr">
+
+
+                    <!-- Logo-->
+                    <div class="header-btn-traiger" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible">
+                        <span></span></div>
+
+                    <!-- Logo-->
+                    <div id="logo">
+                        <a href="/"> <img src="images/logo.png" alt=""></a>
+                        <a href="/"> <img src="images/logo-light.png" class="logo-inverse"
+                                alt=""></a>
+                    </div>
+
+                    <!-- user icons -->
+                    <div class="head_user">
+                        <a href="/" class="opts_icon_link uk-visible@s"> Home </a>
+                        <% if(currentUser) { %> 
+                            <a href="/<%= currentUser.username %>" class="opts_icon_link uk-visible@s"> <%= currentUser.username %>  </a>
+                        <% } %> 
+
+                        <!-- profile -image -->
+                        <a class="opts_account" href="#"> <img src="images/icons/photo.png" alt=""></a>
+
+                        <!-- profile dropdown-->
+                        <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
+                            class="dropdown-notifications rounded-lg">
+
+                            <!-- User Name / Avatar -->
+                            <% if(currentUser) { %> 
+
+                                <a href=" /<%= currentUser.username %>  ">
+
+                                    <div class="dropdown-user-details">
+                                        <div class="dropdown-user-avatar">
+                                            <img src="images/icons/photo.png" alt="">
+                                        </div>
+                                        <div class="dropdown-user-name"> <%= currentUser.username %>  </div>
+                                    </div>
+
+                                </a>
+
+                            <% } %> 
+
+
+                            <!-- User menu -->
+
+                            <ul class="dropdown-user-menu">
+                                <% if(currentUser) { %> 
+                                    <li><a href="/<%= currentUser.username %>"> <i class="uil-user"></i> My Profile </a> </li>
+                                <% } %> 
+
+                                <!-- <li><a href="page-setting.html"> <i class="uil-cog"></i> Account Settings</a></li> -->
+                                <li>
+                                    <a href="#" id="night-mode" class="btn-night-mode">
+                                        <i class="uil-moon"></i> Night mode
+                                        <span class="btn-night-mode-switch">
+                                            <span class="uk-switch-button"></span>
+                                        </span>
+                                    </a>
+                                </li>
+                                </li>
+                                <% if(currentUser) { %> 
+                                    <li><a href="/logout"> <i class="uil-sign-out-alt"></i>Logout</a>
+                                    </li>
+                                <% } %> 
+                            </ul>
+                        </div>
+
+                    </div>
+
+                </div> <!-- / heaader-innr -->
+            </header>
+
+        </div>
+
+
+
+        <div class="main_content">
+
+            <div class="main_content_inner pt-0">
+
+                <div id="_404">
+                    <h1>404</h1>
+                    <p>The Page You Requested Can't Be Found</p>
+                </div>                
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- For Night mode -->
+    <script>
+        (function (window, document, undefined) {
+            'use strict';
+            if (!('localStorage' in window)) return;
+            var nightMode = localStorage.getItem('gmtNightMode');
+            if (nightMode) {
+                document.documentElement.className += ' night-mode';
+            }
+        })(window, document);
+
+
+        (function (window, document, undefined) {
+
+            'use strict';
+
+            // Feature test
+            if (!('localStorage' in window)) return;
+
+            // Get our newly insert toggle
+            var nightMode = document.querySelector('#night-mode');
+            if (!nightMode) return;
+
+            // When clicked, toggle night mode on or off
+            nightMode.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.documentElement.classList.toggle('night-mode');
+                if (document.documentElement.classList.contains('night-mode')) {
+                    localStorage.setItem('gmtNightMode', true);
+                    return;
+                }
+                localStorage.removeItem('gmtNightMode');
+            }, false);
+
+        })(window, document);
+    </script>
+
+
+    <!-- javaScripts
+                ================================================== -->
+    <script src="js/framework.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/simplebar.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+
+</html>

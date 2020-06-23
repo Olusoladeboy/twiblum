@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+
+
+
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <title>Twiblum | <%= currentUser.username %> </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Twiblum allows you post short twibs (posts)">
+    <link rel="icon" href="images/favicon.png">
+
+    <!-- CSS 
+    ================================================== -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/night-mode.css">
+    <link rel="stylesheet" href="css/framework.css">
+
+    <!-- icons
+    ================================================== -->
+    <link rel="stylesheet" href="css/icons.css">
+
+    <!-- Google font
+    ================================================== -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- sidebar -->
+        <div class="main_sidebar">
+            <div class="side-overlay" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></div>
+
+            <!-- sidebar header -->
+            <div class="sidebar-header">
+                <h4> Navigation</h4>
+                <span class="btn-close" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible"></span>
+            </div>
+
+            <!-- sidebar Menu -->
+            <div class="sidebar">
+                <div class="sidebar_innr" data-simplebar>
+
+                    <div class="sections">
+                        <ul>
+                            <li>
+                                <a href="/"> <img src="images/icons/home.png" alt="">
+                                    <span> Feed </span>
+                                </a>
+                            </li>
+                            
+                        </ul>
+                    </div>
+
+
+                     <!-- Optional Footer ->  -->
+                    <div id="foot">
+
+                        <ul>
+                            Developed By: <li> <a href="https://www.olusola.tk"> Emmanuel Olusola </a></li>
+                        </ul>
+
+
+                        <div class="foot-content">
+                            <p>© 2020 <strong>Twiblum</strong>. All Rights Reserved. </p>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <!-- header -->
+        <div id="main_header">
+            <header class="shadow-0">
+                <div class="header-innr">
+
+
+                    <!-- Logo-->
+                    <div class="header-btn-traiger" uk-toggle="target: #wrapper ; cls: collapse-sidebar mobile-visible">
+                        <span></span></div>
+
+                    <!-- Logo-->
+                    <div id="logo">
+                        <a href="/"> <img src="images/logo.png" alt=""></a>
+                        <a href="/"> <img src="images/logo-light.png" class="logo-inverse"
+                                alt=""></a>
+                    </div>
+
+                    <!-- user icons -->
+                    <div class="head_user">
+
+
+                        <a href="/" class="opts_icon_link uk-visible@s"> Home </a>
+                        <a href="/<%= currentUser.username %>" class="opts_icon_link uk-visible@s"> <%= currentUser.username %>  </a>
+
+
+
+
+
+                        <!-- profile -image -->
+                        <a class="opts_account" href="#"> <img src="images/icons/photo.png" alt=""></a>
+
+                        <!-- profile dropdown-->
+                        <div uk-dropdown="mode:click ; animation: uk-animation-slide-bottom-small"
+                            class="dropdown-notifications rounded-lg">
+
+                            <!-- User Name / Avatar -->
+                            <a href=" /<%= currentUser.username %>  ">
+
+                                <div class="dropdown-user-details">
+                                    <div class="dropdown-user-avatar">
+                                        <img src="images/icons/photo.png" alt="">
+                                    </div>
+                                    <div class="dropdown-user-name"> <%= currentUser.username %>  </div>
+                                </div>
+
+                            </a>
+
+                            <!-- User menu -->
+
+                            <ul class="dropdown-user-menu">
+                                <li><a href="/<%= currentUser.username %>"> <i class="uil-user"></i> My Profile </a> </li>
+                                <!-- <li><a href="page-setting.html"> <i class="uil-cog"></i> Account Settings</a></li> -->
+                                <li>
+                                    <a href="#" id="night-mode" class="btn-night-mode">
+                                        <i class="uil-moon"></i> Night mode
+                                        <span class="btn-night-mode-switch">
+                                            <span class="uk-switch-button"></span>
+                                        </span>
+                                    </a>
+                                </li>
+                                </li>
+                                <li><a href="/logout"> <i class="uil-sign-out-alt"></i>Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+
+                </div> <!-- / heaader-innr -->
+            </header>
+
+        </div>
+
+
+
+        <div class="main_content">
+
+            <div class="main_content_inner pt-0">
+
+                <div class="profile">
+                    <div class="profile-cover">
+
+                        <!-- profile cover -->
+                        <img src="images/avatars/profile-cover.jpg" alt="">
+
+                        <a href="/logout"><i class="uil-sign-out-alt"></i> Logout </a>
+
+                    </div>
+
+                    <div class="profile-details">
+                        <div class="profile-image">
+                            <!-- <img src="images/avatars/avatar-2.jpg" alt=""> -->
+                            <img src="images/icons/photo.png" alt="">
+                            <a href="#"> </a>
+                        </div>
+                        <div class="profile-details-info">
+                            <h1> <%= currentUser.username %>  </h1>
+                            <p> <%= currentUser.email %>  
+                                <!-- <a href="#">Edit </a> -->
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="section-small">
+
+                    <div uk-grid>
+
+                        <div class="uk-width-2-3@m fead-area">
+                            <% user.twibs.slice().reverse().forEach((twib) => { %>
+                                <div class="post">
+                                    <div class="post-heading">
+                                        <div class="post-avature">
+                                            <img src="images/group/group-avature.jpg" alt="">
+                                        </div>
+                                        <div class="post-title">
+                                            <h4> <%= twib.author.username %> </h4>
+                                            <p> <%= twib.createdAt.toISOString().slice(0, 19).replace('T', ' ') %> <span> GMT</span> <i class="uil-users-alt"></i> </p>
+                                        </div>
+                                        <!-- <div class="post-btn-action">
+                                            <span class="icon-more uil-ellipsis-h"></span>
+                                            <div class="mt-0 p-2" uk-dropdown="pos: top-right;mode:hover ">
+                                                <ul class="uk-nav uk-dropdown-nav">
+                                                    <li><a href="#"> <i class="uil-share-alt mr-1"></i> Share</a> </li>
+                                                    <li><a href="#"> <i class="uil-edit-alt mr-1"></i> Edit Post </a></li>
+                                                    <li><a href="#"> <i class="uil-comment-slash mr-1"></i> Disable comments
+                                                        </a></li>
+                                                    <li><a href="#"> <i class="uil-favorite mr-1"></i> Add favorites </a>
+                                                    </li>
+                                                    <li><a href="#" class="text-danger"> <i class="uil-trash-alt mr-1"></i>
+                                                            Delete </a></li>
+                                                </ul>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                    <div class="post-description">
+
+                                        <p> <%= twib.twib %> </p>
+                                        <!-- <div class="post-state-details">
+                                            <div>
+                                                <img src="images/icons/reactions_like.png" alt="">
+                                                <img src="images/icons/reactions_love.png" alt="">
+                                                <p> 13 </p>
+                                            </div>
+                                            <p> 24 Comments</p>
+                                        </div> -->
+
+                                    </div>
+
+
+                                </div>  
+                                <!-- post comments -->
+                                                           
+                            <% }) %>                             
+                        </div>
+
+                        <!-- sidebar -->
+                        <div class="uk-width-expand">
+
+
+                            <h3> Trending Twibs </h3>
+                            <!-- <div class="list-group-items">
+                                <i class="uil-thumbs-up"></i>
+                                <h5> <span class="mr-1"> 120 </span> Members Joined <p class="text-success mb-0 ml-2">
+                                        +40 This week </p>
+                                </h5>
+                            </div>
+
+                            <div class="list-group-items">
+                                <i class="uil-list-ul"></i>
+                                <h5> <span class="mr-1"> 12 </span> posts <p class="text-primary mb-0 ml-2"> +20 Daily
+                                    </p>
+                                </h5>
+                            </div>
+
+                            <div class="list-group-items">
+                                <i class="uil-bag-alt"> </i>
+                                <h5> <span class="mr-1"> 16 </span> jobs </h5>
+                            </div>
+
+                            <div class="list-group-items">
+                                <i class="uil-tag-alt"> </i>
+                                <h5> Blogs , Magazine </h5>
+                            </div>
+
+                            <a href="#" class="button soft-primary block my-3"> edit </a>
+
+                            <hr class="my-3">
+
+
+                            <h3> Description </h3>
+
+                            <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod
+                                tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
+                                quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip <a href="#">
+                                    Read more </a> </p>
+
+                            <a href="#" class="button secondary block my-3"> See All </a>
+
+                            <hr class="mt-3 mb-2">
+
+                            <div uk-sticky="offset:90 ; bottom:true ; meda : @m">
+
+
+                                <div class="section-header pt-2">
+                                    <div class="section-header-left">
+                                        <h3> Suggested Groups </h3>
+                                    </div>
+                                    <div class="section-header-right">
+                                        <a href="#" class="see-all text-primary"> See all</a>
+                                    </div>
+                                </div> -->
+
+                                <div class="uk-child-width-1-1@m uk-grid-collapse" uk-grid>
+                                    <!-- list itme 1 -->
+                                    <!-- <div>
+                                        <div class="list-items">
+                                            <div class="list-item-media">
+                                                <img src="images/group/group-2.jpg" alt="">
+                                            </div>
+                                            <div class="list-item-content">
+                                                <a href="group-feed.html">
+                                                    <h5> Coffee Addicts </h5>
+                                                </a>
+                                                <p> Drinks , Food </p>
+                                            </div>
+                                            <div class="uk-width-auto">
+                                                <span class="btn-option">
+                                                    <i class="icon-feather-more-horizontal"></i>
+                                                </span>
+                                                <div class="dropdown-option-nav"
+                                                    uk-dropdown="pos: bottom-right ;mode : hover ;animation: uk-animation-slide-bottom-small">
+                                                    <ul>
+                                                        <li>
+                                                            <span> <i class="uil-bell"></i> Joined </span>
+                                                        </li>
+                                                        <li>
+                                                            <span> <i class="uil-bookmark"></i> Add Bookmark </span>
+                                                        </li>
+                                                        <li>
+                                                            <span> <i class="uil-share-alt"></i> Share Your Friends
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+
+                                    <!-- list itme 2 -->
+                                    <!-- <div>
+                                        <div class="list-items">
+                                            <div class="list-item-media">
+                                                <img src="images/group/group-1.jpg" alt="">
+                                            </div>
+                                            <div class="list-item-content">
+                                                <a href="group-feed.html">
+                                                    <h5> Architecture </h5>
+                                                </a>
+                                                <p> Engineering, artchects </p>
+                                            </div>
+                                            <div class="uk-width-auto">
+                                                <span class="btn-option">
+                                                    <i class="icon-feather-more-horizontal"></i>
+                                                </span>
+                                                <div class="dropdown-option-nav"
+                                                    uk-dropdown="pos: bottom-right ;mode : hover ;animation: uk-animation-slide-bottom-small">
+                                                    <ul>
+                                                        <li>
+                                                            <span> <i class="uil-bell"></i> Joined </span>
+                                                        </li>
+                                                        <li>
+                                                            <span> <i class="uil-bookmark"></i> Add Bookmark </span>
+                                                        </li>
+                                                        <li>
+                                                            <span> <i class="uil-share-alt"></i> Share Your Friends
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    <!-- list itme 3 -->
+                                    <!-- <div>
+                                        <div class="list-items">
+                                            <div class="list-item-media">
+                                                <img src="images/group/group-3.jpg" alt="">
+                                            </div>
+                                            <div class="list-item-content">
+                                                <a href="group-feed.html">
+                                                    <h5> Graphic Design </h5>
+                                                </a>
+                                                <p> Design </p>
+                                            </div>
+                                            <div class="uk-width-auto">
+                                                <span class="btn-option">
+                                                    <i class="icon-feather-more-horizontal"></i>
+                                                </span>
+                                                <div class="dropdown-option-nav"
+                                                    uk-dropdown="pos: bottom-right ;mode : hover ;animation: uk-animation-slide-bottom-small">
+                                                    <ul>
+                                                        <li>
+                                                            <span> <i class="uil-bell"></i> Joined </span>
+                                                        </li>
+                                                        <li>
+                                                            <span> <i class="uil-bookmark"></i> Add Bookmark </span>
+                                                        </li>
+                                                        <li>
+                                                            <span> <i class="uil-share-alt"></i> Share Your Friends
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+
+                                    <!-- list itme 4 -->
+                                    <!-- <div>
+                                        <div class="list-items">
+                                            <div class="list-item-media">
+                                                <img src="images/group/group-4.jpg" alt="">
+                                            </div>
+                                            <div class="list-item-content">
+                                                <a href="group-feed.html">
+                                                    <h5> Property Rent </h5>
+                                                </a>
+                                                <p> Listing , Homes </p>
+                                            </div>
+                                            <div class="uk-width-auto">
+                                                <span class="btn-option">
+                                                    <i class="icon-feather-more-horizontal"></i>
+                                                </span>
+                                                <div class="dropdown-option-nav"
+                                                    uk-dropdown="pos: bottom-right ;mode : hover ;animation: uk-animation-slide-bottom-small">
+                                                    <ul>
+                                                        <li>
+                                                            <span> <i class="uil-bell"></i> Joined </span>
+                                                        </li>
+                                                        <li>
+                                                            <span> <i class="uil-bookmark"></i> Add Bookmark </span>
+                                                        </li>
+                                                        <li>
+                                                            <span> <i class="uil-share-alt"></i> Share Your Friends
+                                                            </span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div> -->
+
+                                <!-- <a href="#" class="button secondary block my-3"> See All </a> -->
+
+                            </div>
+
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- For Night mode -->
+    <script>
+        (function (window, document, undefined) {
+            'use strict';
+            if (!('localStorage' in window)) return;
+            var nightMode = localStorage.getItem('gmtNightMode');
+            if (nightMode) {
+                document.documentElement.className += ' night-mode';
+            }
+        })(window, document);
+
+
+        (function (window, document, undefined) {
+
+            'use strict';
+
+            // Feature test
+            if (!('localStorage' in window)) return;
+
+            // Get our newly insert toggle
+            var nightMode = document.querySelector('#night-mode');
+            if (!nightMode) return;
+
+            // When clicked, toggle night mode on or off
+            nightMode.addEventListener('click', function (event) {
+                event.preventDefault();
+                document.documentElement.classList.toggle('night-mode');
+                if (document.documentElement.classList.contains('night-mode')) {
+                    localStorage.setItem('gmtNightMode', true);
+                    return;
+                }
+                localStorage.removeItem('gmtNightMode');
+            }, false);
+
+        })(window, document);
+    </script>
+
+
+    <!-- javaScripts
+                ================================================== -->
+    <script src="js/framework.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/simplebar.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+
+</html>
