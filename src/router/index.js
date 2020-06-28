@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
                 } else {
                     res.render('index', {
                         feeds: feeds,
-                        users: users
+                        users: users.slice().reverse()
                     })
                 }
             })
@@ -61,18 +61,25 @@ router.post('/signup', async (req, res) => {
     })
     const pw = req.body.password
     if(pw.length < 8){
-        req.flash('error', 'Password should be greater than 8 characters')
+        req.flash('error', 'Password should be between 8-10 Characters')
         res.redirect('/signup')
+    } else if (pw.length > 10) {
+        req.flash('error', 'Password should be between 8-10 Characters')
+        res.redirect('/signup')        
+    } else {
+        User.register(newUser, req.body.password, async (err, User) => {
+            if(err){
+                req.flash('error', err.message)
+                res.redirect('/signup')
+            } else {
+                passport.authenticate('local')(req, res, () => {
+                    res.redirect('/')
+                })            
+            }
+
+        })        
     }
-    User.register(newUser, req.body.password, async (err, User) => {
-        if(err){
-            req.flash('error', err)
-            res.redirect('/signup')
-        }
-        passport.authenticate('local')(req, res, () => {
-            res.redirect('/')
-        })
-    })
+
 })
 
 router.get('/login', (req, res) => {

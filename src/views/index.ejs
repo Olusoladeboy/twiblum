@@ -436,8 +436,8 @@
                                 <% }) %> 
 
                             <% } else { %>
-
-                                <%  for (let index = 4; index >= 0; --index) { %>
+<!--  index = 4; index >= 0; --index -->
+                                <%  for (let index = 0; index < 5; index++) { %>
                                     <div class="list-group-items">
                                         <i class="uil-user-plus"></i>
                                         <h5> <span class="mr-1"> <%= users[index].username %> </span></p>
