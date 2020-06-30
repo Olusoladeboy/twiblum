@@ -428,28 +428,28 @@
 
 
 
-var inputField = document.getElementById('inputField')
-var signupBtn = document.getElementById('signupBtn')
+// var inputField = document.getElementById('inputField')
+// var signupBtn = document.getElementById('signupBtn')
 
-inputField.addEventListener('keypress', () => {
-	// console.log(inputField.value.length)
-	if ((inputField.value.length < 7)){
-		console.log('I am Less than 7')
-		signupBtn.style.display = 'none'
-	} else if ((inputField.value.length > 9)) {
-		console.log('I am greater than 9')
-		signupBtn.style.display = 'none'
-	}
-	else {
-		console.log('I am in between')
-		signupBtn.style.display = 'inline-block'
-	}
-})
+// inputField.addEventListener('keypress', () => {
+// 	// console.log(inputField.value.length)
+// 	if ((inputField.value.length < 7)){
+// 		console.log('I am Less than 7')
+// 		signupBtn.style.display = 'none'
+// 	} else if ((inputField.value.length > 9)) {
+// 		console.log('I am greater than 9')
+// 		signupBtn.style.display = 'none'
+// 	}
+// 	else {
+// 		console.log('I am in between')
+// 		signupBtn.style.display = 'inline-block'
+// 	}
+// })
 
-if(inputField.value.length < 7) {
-	signupBtn.style.display = 'none'
-}
+// if(inputField.value.length < 7) {
+// 	signupBtn.style.display = 'none'
+// }
 
-signupBtn.style.display = 'none'
+// signupBtn.style.display = 'none'
 
 
